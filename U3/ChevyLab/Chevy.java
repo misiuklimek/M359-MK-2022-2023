@@ -21,10 +21,10 @@ public class Chevy {
 
     private final String MAKE = "Chevrolet";
     private final double TAX_RATE = .122;
-    private final double LUX_PKG_PRICE = basePrice * .2;
+    private final double LUX_PKG_PRIC = basePrice * .2;
     private final int FOURWD_PKG_PRICE = 3500;
-    private final double SPORTS_PKG_PRICE = basePrice * .15;
-    private final double SPORTS_PKG_MPG = mpg * .2;
+    private final double SPORTS_PKG_PRIC = basePrice * .15;
+    private final double SPORTS_PKG_MP = mpg * .2;
 
 
 
@@ -59,6 +59,7 @@ public class Chevy {
 
     //methods
 
+
     public int compareTo(Chevy other)   {
         if (this.mpg > other.mpg){
             return -1;
@@ -69,10 +70,57 @@ public class Chevy {
         }
     }
 
-    
+
+    public boolean equals(Chevy other){
+        if (this.model.equals(other.model) && this.color.equals(other.color)){
+            if ((this.mpg < 200) == (other.mpg < 200)){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+
+    public String toString(){
+        calcPrice();
+        String stringChevy = "**************************************************\n";
+        stringChevy += year+" "+MAKE+" "+model+" ("+color+")\n\t";
+        stringChevy += "BASE PRICE:\t\t\t$"+basePrice+"\n\tMAKE:\t\t\t\t"+miles;
+        stringChevy += "\n\tFUEL EFFICIENCY:\t\t"+mpg+" mpg\n\tPACKAGES:\n\t\t";
+        if (luxuryPkg == true){
+            stringChevy += "- Luxury Package\n\t\t";
+        }
+        if (sportsPkg == true){
+            stringChevy += "- Sports Package\n\t\t";
+        }
+        if (FWDPkg == true){
+            stringChevy += "- 4WD Package Package\n\t\t";
+        }
+        if (FWDPkg != true && luxuryPkg != true && sportsPkg != true){
+            stringChevy += "- None\n\n\nt";
+        }
+        return stringChevy;
+    }
+
 
     public void calcPrice(){
+         priceWithUpgrades = basePrice;
+        if (luxuryPkg == true){
+            priceWithUpgrades += basePrice * .2;
+        }
+        if (FWDPkg == true){
+            priceWithUpgrades += FOURWD_PKG_PRICE;
+        }
+        if (sportsPkg == true){
+            priceWithUpgrades += basePrice * .15;
+            mpg = (mpg * .8);
+        }
+        grandTotal = priceWithUpgrades * 1.122;
 
+        // checks for and adds on any additions and adds tax
     }
 
 
@@ -134,6 +182,7 @@ public class Chevy {
         this.sportsPkg = sportsPkg;
     }
     public double getPriceWithUpgrades() {
+        calcPrice();
         return priceWithUpgrades;
     }
 
@@ -142,6 +191,7 @@ public class Chevy {
     }
 
     public double getGrandTotal() {
+        calcPrice();
         return grandTotal;
     }
 
