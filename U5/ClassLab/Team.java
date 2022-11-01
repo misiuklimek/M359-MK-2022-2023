@@ -1,0 +1,86 @@
+package U5.ClassLab;
+
+public class Team {
+
+    // Instance variables
+    private String name;
+    private int wins;
+    private int losses;
+    private double winPerc;
+    private Division div;
+    private Offense teamO;
+    private Defense teamD;
+
+
+
+    // Constructor
+
+    public Team(String name, Division div, Offense teamO, Defense teamD) {
+        this.name = name;
+        this.div = div;
+        this.teamO = new Offense(teamO.getOffenseScore());
+        this.teamD = new Defense(teamD.getDefenseScore());
+        this.wins = 0;
+        this.losses = 0;
+        this.winPerc = 0;
+    }
+
+
+    //get/set
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
+    public int getLosses() {
+        return losses;
+    }
+
+    public void setLosses(int losses) {
+        this.losses = losses;
+    }
+
+    public double getWinPerc() {
+        return winPerc;
+    }
+
+    public void setWinPerc(double winPerc) {
+        this.winPerc = winPerc;
+    }
+
+    public Division getDivision() {
+        return div;
+    }
+
+    public void setDivision(Division division) {
+        this.div = division;
+    }
+
+    public Offense getTeamO() {
+        return teamO;
+    }
+
+    public void setTeamO(Offense teamO) {
+        this.teamO = teamO;
+    }
+
+    public Defense getTeamD() {
+        return teamD;
+    }
+
+    public void setTeamD(Defense teamD) {
+        this.teamD = teamD;
+    }
+}
