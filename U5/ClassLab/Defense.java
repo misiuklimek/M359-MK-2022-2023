@@ -8,7 +8,7 @@ public class Defense {
     private double sacks;
     private double ints;
 
-    public Defense(double defenseScore) {
+    public Defense(double defenseScore, double ptsAgainst, double yardsAgainst, double passAgainst, double sacks, double ints) {
         this.defenseScore = defenseScore;
         this.ptsAgainst = ptsAgainst;
         this.yardsAgainst = yardsAgainst;
@@ -16,6 +16,8 @@ public class Defense {
         this.sacks = sacks;
         this.ints = ints;
     }
+
+
 
     public double getDefenseScore() {
         return defenseScore;

@@ -7,7 +7,7 @@ public class Team {
     private int wins;
     private int losses;
     private double winPerc;
-    private Division div;
+    private String div;
     private Offense teamO;
     private Defense teamD;
 
@@ -15,11 +15,11 @@ public class Team {
 
     // Constructor
 
-    public Team(String name, Division div, Offense teamO, Defense teamD) {
+    public Team(String name, String div, Offense teamO, Defense teamD) {
         this.name = name;
         this.div = div;
-        this.teamO = new Offense(teamO.getOffenseScore());
-        this.teamD = new Defense(teamD.getDefenseScore());
+        this.teamO = new Offense(teamO.getOffenseScore(), teamO.getNumPlayMakers(), teamO.getAvgPts(), teamO.getAvgYards(), teamO.getAvgRush(), teamO.getAvgPass());
+        this.teamD = new Defense(teamD.getDefenseScore(), teamD.getPtsAgainst(), teamD.getYardsAgainst(), teamD.getPassAgainst(), teamD.getSacks(), teamD.getInts());
         this.wins = 0;
         this.losses = 0;
         this.winPerc = 0;
@@ -60,11 +60,11 @@ public class Team {
         this.winPerc = winPerc;
     }
 
-    public Division getDivision() {
+    public String getDivision() {
         return div;
     }
 
-    public void setDivision(Division division) {
+    public void setDivision(String division) {
         this.div = division;
     }
 

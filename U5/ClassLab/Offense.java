@@ -8,7 +8,7 @@ public class Offense {
     private double avgRush;
     private double avgPass;
 
-    public Offense(double offenseScore) {
+    public Offense(double offenseScore, int numPlayMakers, double avgPts, double avgYards, double avgRush, double avgPass) {
         this.offenseScore = offenseScore;
         this.numPlayMakers = numPlayMakers;
         this.avgPts = avgPts;
@@ -17,6 +17,9 @@ public class Offense {
         this.avgPass = avgPass;
     }
 
+    public void calcOffense(){
+        if ()
+    }
 
     public double getOffenseScore() {
         return offenseScore;
