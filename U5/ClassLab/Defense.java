@@ -4,22 +4,44 @@ public class Defense {
     private double defenseScore;
     private double ptsAgainst;
     private double yardsAgainst;
-    private double passAgainst;
-    private double sacks;
-    private double ints;
 
-    public Defense(double defenseScore, double ptsAgainst, double yardsAgainst, double passAgainst, double sacks, double ints) {
-        this.defenseScore = defenseScore;
+    private double takeaways;
+
+    public Defense(double ptsAgainst, double yardsAgainst, double takeaways) {
+        this.defenseScore = 0;
         this.ptsAgainst = ptsAgainst;
         this.yardsAgainst = yardsAgainst;
-        this.passAgainst = passAgainst;
-        this.sacks = sacks;
-        this.ints = ints;
+        this.takeaways = takeaways;
     }
 
+    public void calcDefense() {
+        if (ptsAgainst > 25) {
+            defenseScore += .1;
+        } else if (ptsAgainst > 22.5) {
+            defenseScore += .20;
+        } else if (ptsAgainst > 20) {
+            defenseScore += .3;
+        } else if (ptsAgainst > 17.5) {
+            defenseScore += .4;
+        } else {
+            defenseScore += .5;
+        }
 
+        if (yardsAgainst < 400) {
+            defenseScore += .1;
+        } else if (yardsAgainst < 380) {
+            defenseScore += .2;
+        } else if (yardsAgainst < 360) {
+            defenseScore += .3;
+        } else if (yardsAgainst < 330) {
+            defenseScore += .4;
+        } else {
+            defenseScore += .5;
+        }
 
-    public double getDefenseScore() {
+    }
+        public double getDefenseScore() {
+        calcDefense();
         return defenseScore;
     }
 
@@ -43,27 +65,13 @@ public class Defense {
         this.yardsAgainst = yardsAgainst;
     }
 
-    public double getPassAgainst() {
-        return passAgainst;
+    public double getTakeaways() {
+        return takeaways;
     }
 
-    public void setPassAgainst(double passAgainst) {
-        this.passAgainst = passAgainst;
+    public void setTakeaways(double takeaways) {
+        this.takeaways = takeaways;
     }
 
-    public double getSacks() {
-        return sacks;
-    }
 
-    public void setSacks(double sacks) {
-        this.sacks = sacks;
-    }
-
-    public double getInts() {
-        return ints;
-    }
-
-    public void setInts(double ints) {
-        this.ints = ints;
-    }
 }

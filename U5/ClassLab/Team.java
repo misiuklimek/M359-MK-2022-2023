@@ -18,8 +18,8 @@ public class Team {
     public Team(String name, String div, Offense teamO, Defense teamD) {
         this.name = name;
         this.div = div;
-        this.teamO = new Offense(teamO.getOffenseScore(), teamO.getNumPlayMakers(), teamO.getAvgPts(), teamO.getAvgYards(), teamO.getAvgRush(), teamO.getAvgPass());
-        this.teamD = new Defense(teamD.getDefenseScore(), teamD.getPtsAgainst(), teamD.getYardsAgainst(), teamD.getPassAgainst(), teamD.getSacks(), teamD.getInts());
+        this.teamO = new Offense(teamO.getAvgPts(), teamO.getAvgYards());
+        this.teamD = new Defense(teamD.getPtsAgainst(), teamD.getYardsAgainst(), teamD.getTakeaways());
         this.wins = 0;
         this.losses = 0;
         this.winPerc = 0;

@@ -5,8 +5,8 @@ import java.util.PrimitiveIterator;
 public class Chevy {
 
 
-
     //private variables
+
     private int year;
     private int miles;
     private double mpg;
@@ -20,16 +20,17 @@ public class Chevy {
     private double grandTotal;
 
     private final String MAKE = "Chevrolet";
-    private final double TAX_RATE = .122;
-    private final double LUX_PKG_PRIC = basePrice * .2;
+    private final double TAX_RATE = 1.122;
+    private final double LUX_PKG_PRIC = .2;
     private final int FOURWD_PKG_PRICE = 3500;
-    private final double SPORTS_PKG_PRIC = basePrice * .15;
-    private final double SPORTS_PKG_MP = mpg * .2;
+    private final double SPORTS_PKG_PRICE = .15;
+    private final double SPORTS_PKG_MPG = .2;
 
 
 
 
     // Constructors
+
     public Chevy() {
         this.year = 2021;
         this.miles = 0;
@@ -59,11 +60,10 @@ public class Chevy {
 
     //methods
 
-
     public int compareTo(Chevy other)   {
-        if (this.mpg > other.mpg){
+        if (this.miles > other.miles){
             return -1;
-        } else if(this.mpg < other.mpg){
+        } else if(this.miles < other.miles){
             return 1;
         } else{
             return 0;
@@ -73,7 +73,7 @@ public class Chevy {
 
     public boolean equals(Chevy other){
         if (this.model.equals(other.model) && this.color.equals(other.color)){
-            if ((this.mpg < 200) == (other.mpg < 200)){
+            if ((this.miles > 200) == (other.miles > 200)){
                 return true;
             } else {
                 return false;
@@ -86,10 +86,10 @@ public class Chevy {
 
     public String toString(){
         calcPrice();
-        String stringChevy = "**************************************************\n";
+        String stringChevy = "\n**************************************************\n";
         stringChevy += year+" "+MAKE+" "+model+" ("+color+")\n\t";
-        stringChevy += "BASE PRICE:\t\t\t$"+basePrice+"\n\tMAKE:\t\t\t\t"+miles;
-        stringChevy += "\n\tFUEL EFFICIENCY:\t\t"+mpg+" mpg\n\tPACKAGES:\n\t\t";
+        stringChevy += "BASE PRICE:\t\t\t$"+basePrice+"\n\tMILES:\t\t\t\t"+miles;
+        stringChevy += "\n\tFUEL EFFICIENCY:\t"+mpg+" mpg\n\tPACKAGES:\n\t\t";
         if (luxuryPkg == true){
             stringChevy += "- Luxury Package\n\t\t";
         }
@@ -100,8 +100,13 @@ public class Chevy {
             stringChevy += "- 4WD Package Package\n\t\t";
         }
         if (FWDPkg != true && luxuryPkg != true && sportsPkg != true){
-            stringChevy += "- None\n\n\nt";
+            stringChevy += "- None\n\n\t";
         }
+        if (FWDPkg == true || luxuryPkg == true || sportsPkg == true){
+            stringChevy += "\n\t";
+        }
+        stringChevy += "PRICE WITH UPGRADES:\t$"+priceWithUpgrades+"\n\tFINAL PRICE WITH TAX:\t$"+grandTotal+"\n";
+        stringChevy += "**************************************************\n";
         return stringChevy;
     }
 
@@ -109,24 +114,23 @@ public class Chevy {
     public void calcPrice(){
          priceWithUpgrades = basePrice;
         if (luxuryPkg == true){
-            priceWithUpgrades += basePrice * .2;
+            priceWithUpgrades += basePrice * LUX_PKG_PRIC;
         }
         if (FWDPkg == true){
             priceWithUpgrades += FOURWD_PKG_PRICE;
         }
         if (sportsPkg == true){
-            priceWithUpgrades += basePrice * .15;
-            mpg = (mpg * .8);
+            priceWithUpgrades += basePrice * SPORTS_PKG_PRICE;
+            mpg = (mpg * SPORTS_PKG_MPG);
         }
-        grandTotal = priceWithUpgrades * 1.122;
+        grandTotal = priceWithUpgrades * TAX_RATE;
 
         // checks for and adds on any additions and adds tax
     }
 
 
-
-
     //get/set methods
+
     public int getYear() {
         return year;
     }

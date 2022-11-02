@@ -2,26 +2,56 @@ package U5.ClassLab;
 
 public class Offense {
     private double offenseScore;
-    private int numPlayMakers;
     private double avgPts;
     private double avgYards;
-    private double avgRush;
-    private double avgPass;
 
-    public Offense(double offenseScore, int numPlayMakers, double avgPts, double avgYards, double avgRush, double avgPass) {
-        this.offenseScore = offenseScore;
-        this.numPlayMakers = numPlayMakers;
+
+    public Offense(double avgPts, double avgYards) {
+        this.offenseScore = 0;
         this.avgPts = avgPts;
         this.avgYards = avgYards;
-        this.avgRush = avgRush;
-        this.avgPass = avgPass;
     }
 
     public void calcOffense(){
-        if ()
+        if (avgPts > 17.5) {
+            if (avgPts > 20) {
+                if (avgPts > 25) {
+                    if (avgPts > 30) {
+                        offenseScore += .5;
+                    } else {
+                        offenseScore += .42;
+                    }
+                } else {
+                    offenseScore += .25;
+                }
+            } else {
+                offenseScore += .26;
+            }
+        } else {
+            offenseScore += .15;
+        }
+
+        if (avgYards > 335) {
+            if (avgYards > 368) {
+                if (avgYards > 380) {
+                    if (avgYards > 400) {
+                        offenseScore += .5;
+                    } else {
+                        offenseScore += .42;
+                    }
+                } else {
+                    offenseScore += .25;
+                }
+            } else {
+                offenseScore += .26;
+            }
+        } else {
+            offenseScore += .15;
+        }
     }
 
     public double getOffenseScore() {
+        calcOffense();
         return offenseScore;
     }
 
@@ -29,13 +59,6 @@ public class Offense {
         this.offenseScore = offenseScore;
     }
 
-    public int getNumPlayMakers() {
-        return numPlayMakers;
-    }
-
-    public void setNumPlayMakers(int numPlayMakers) {
-        this.numPlayMakers = numPlayMakers;
-    }
 
     public double getAvgPts() {
         return avgPts;
@@ -53,19 +76,5 @@ public class Offense {
         this.avgYards = avgYards;
     }
 
-    public double getAvgRush() {
-        return avgRush;
-    }
 
-    public void setAvgRush(double avgRush) {
-        this.avgRush = avgRush;
-    }
-
-    public double getAvgPass() {
-        return avgPass;
-    }
-
-    public void setAvgPass(double avgPass) {
-        this.avgPass = avgPass;
-    }
 }
