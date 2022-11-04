@@ -5,53 +5,42 @@ public class Offense {
     private double avgPts;
     private double avgYards;
 
+    public static double calcOffense(double avgPts, double avgYards){
+        double offenseScore = 0;
+        if (avgPts > 30){
+            offenseScore += .5;
+        } else if (avgPts > 25) {
+            offenseScore += .4;
+        } else if (avgPts > 20) {
+            offenseScore += .25;
+        } else if (avgPts > 17.5) {
+            offenseScore += .1;
+        }
+
+        if (avgYards > 400){
+            offenseScore += .5;
+        } else if (avgYards > 380) {
+            offenseScore +=.4;
+        } else if (avgYards > 370) {
+            offenseScore += .3;
+        } else if (avgYards >340) {
+            offenseScore += .2;
+        } else {
+            offenseScore += .1;
+        }
+        return offenseScore;
+    }
 
     public Offense(double avgPts, double avgYards) {
-        this.offenseScore = 0;
+        this.offenseScore = calcOffense(avgPts, avgYards);
         this.avgPts = avgPts;
         this.avgYards = avgYards;
     }
 
-    public void calcOffense(){
-        if (avgPts > 17.5) {
-            if (avgPts > 20) {
-                if (avgPts > 25) {
-                    if (avgPts > 30) {
-                        offenseScore += .5;
-                    } else {
-                        offenseScore += .42;
-                    }
-                } else {
-                    offenseScore += .25;
-                }
-            } else {
-                offenseScore += .26;
-            }
-        } else {
-            offenseScore += .15;
-        }
 
-        if (avgYards > 335) {
-            if (avgYards > 368) {
-                if (avgYards > 380) {
-                    if (avgYards > 400) {
-                        offenseScore += .5;
-                    } else {
-                        offenseScore += .42;
-                    }
-                } else {
-                    offenseScore += .25;
-                }
-            } else {
-                offenseScore += .26;
-            }
-        } else {
-            offenseScore += .15;
-        }
-    }
+
 
     public double getOffenseScore() {
-        calcOffense();
         return offenseScore;
     }
 

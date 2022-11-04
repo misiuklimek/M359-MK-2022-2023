@@ -39,6 +39,14 @@ public class Defense {
             defenseScore += .5;
         }
 
+        if (takeaways > 12){
+            if (defenseScore >= .905){
+                defenseScore = 1.0;
+            } else{
+                defenseScore = defenseScore * 1.1;
+            }
+        }
+
     }
         public double getDefenseScore() {
         calcDefense();

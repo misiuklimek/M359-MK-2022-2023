@@ -11,6 +11,21 @@ public class Team {
     private Offense teamO;
     private Defense teamD;
 
+    public static String bestTeam = "";
+    public static String getBestTeam(){
+        return bestTeam;
+    }
+
+    public static boolean coinFlip(){
+
+        int coin = (int)(Math.random() * 10)+1;
+        if (coin >= 5){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
 
 
     // Constructor
