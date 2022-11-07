@@ -23,6 +23,12 @@ public class Team {
 
     // Constructor
 
+    /**
+     * Creates an NFL team as its own object.
+     * @param name Name of the team
+     * @param teamO Team's offense, has additional parameters
+     * @param teamD Team's defense, has additional parameters
+     */
     public Team(String name, Offense teamO, Defense teamD) {
         this.name = name;
         this.teamO = new Offense(teamO.getAvgPts(), teamO.getAvgYards());
@@ -37,14 +43,13 @@ public class Team {
     /**
      * Plays two teams against each other in order to find the winner using their offense and defense
      * scores to determine who should be the winner of the game.
-     * @param x Team 1
-     * @param y Team 2
+     * @param other Team 2
      * @return
      */
-    public Team playGame(Team x, Team y){
+    public Team playGame(Team other){
         double chance = .5;
-        double offenseDifference = x.getTeamO().getOffenseScore() - y.getTeamO().getOffenseScore();
-        double defenseDifference = x.getTeamD().getDefenseScore() - y.getTeamD().getDefenseScore();
+        double offenseDifference = this.getTeamO().getOffenseScore() - other.getTeamO().getOffenseScore();
+        double defenseDifference = this.getTeamD().getDefenseScore() - other.getTeamD().getDefenseScore();
         if (offenseDifference > .3){
             chance += .3;
         } else if (offenseDifference > .15){
@@ -72,16 +77,29 @@ public class Team {
             chance -= .3;
         }
         if (chance < .5){
-            return y;
+            other.wins++;
+            this.losses++;
+            return other;
         } else if (chance > .5) {
-            return x;
-        } else {
-            if (coinFlip()){
-                return x;
-            } else
-                return y;
+            this.wins++;
+            other.losses++;
+            return this;
+        } else{
+            if(coinFlip()){
+                other.wins++;
+                this.losses++;
+                return other;
+            } else{
+                this.wins++;
+                other.losses++;
+                return this;
+
+            }
         }
     }
+
+
+
 
     /**
      * Calculates the win percentage by dividing wins by losses.
@@ -89,6 +107,9 @@ public class Team {
     public void calcWinPerc(){
         winPerc = wins/losses;
     }
+
+
+
 
     //get/set
 
