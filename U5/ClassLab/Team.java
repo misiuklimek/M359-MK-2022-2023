@@ -6,15 +6,18 @@ public class Team {
     private String name;
     private int wins;
     private int losses;
-    private double winPerc;
     private Offense teamO;
     private Defense teamD;
 
-    public static String bestTeam = "";
-    public static String getBestTeam(){
-        return bestTeam;
+    public static String winPercent = "";
+    public static String getWinPercent(){
+        return winPercent;
     }
 
+    /**
+     * Flips a coin 50/50 chance either way
+     * @return True or False
+     */
     public static boolean coinFlip(){
 
         int coin = (int)(Math.random() * 10)+1;
@@ -35,7 +38,6 @@ public class Team {
         this.teamD = new Defense(teamD.getPtsAgainst(), teamD.getYardsAgainst(), teamD.getTakeaways());
         this.wins = 0;
         this.losses = 0;
-        this.winPerc = 0;
     }
 
     // methods
@@ -44,7 +46,7 @@ public class Team {
      * Plays two teams against each other in order to find the winner using their offense and defense
      * scores to determine who should be the winner of the game.
      * @param other Team 2
-     * @return
+     * @return Returns the winning team object
      */
     public Team playGame(Team other){
         double chance = .5;
@@ -101,16 +103,6 @@ public class Team {
 
 
 
-    /**
-     * Calculates the win percentage by dividing wins by losses.
-     */
-    public void calcWinPerc(){
-        winPerc = wins/losses;
-    }
-
-
-
-
     //get/set
 
     public String getName() {
@@ -135,14 +127,6 @@ public class Team {
 
     public void setLosses(int losses) {
         this.losses = losses;
-    }
-
-    public double getWinPerc() {
-        return winPerc;
-    }
-
-    public void setWinPerc(double winPerc) {
-        this.winPerc = winPerc;
     }
 
 

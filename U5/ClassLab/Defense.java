@@ -7,6 +7,12 @@ public class Defense {
 
     private double takeaways;
 
+    /**
+     * Constructor that creates a Team's defense and includes their defensive score.
+     * @param ptsAgainst Points the team allows on average per game
+     * @param yardsAgainst Yards they allow on average per game
+     * @param takeaways Amount of takeaways the team has all season
+     */
     public Defense(double ptsAgainst, double yardsAgainst, double takeaways) {
         this.defenseScore = calcDefense(ptsAgainst, yardsAgainst, takeaways);
         this.ptsAgainst = ptsAgainst;
@@ -14,6 +20,14 @@ public class Defense {
         this.takeaways = takeaways;
     }
 
+    /**
+     * Calculates a defenses overall score based off 3 factors to create an overall defensive
+     * score for a team based off their stats.
+     * @param ptsAgainst Points the team allows on average per game
+     * @param yardsAgainst Yards they allow on average per game
+     * @param takeaways Amount of takeaways the team has all season
+     * @return Returns the overall score
+     */
     public static double calcDefense(double ptsAgainst, double yardsAgainst, double takeaways) {
         double defenseScore = 0;
         if (ptsAgainst > 25) {
@@ -49,6 +63,11 @@ public class Defense {
         }
         return defenseScore;
     }
+
+
+
+    // get/set methods
+
     public double getDefenseScore() {
         return defenseScore;
     }

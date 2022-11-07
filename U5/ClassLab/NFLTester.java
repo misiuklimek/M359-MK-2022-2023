@@ -8,6 +8,15 @@ public class NFLTester {
         System.out.println(bears.playGame(lions));
     }
 
+    /**
+     * Plays out a divisional season to find out who wins the division through the use of matches
+     * between each of its members.
+     * @param x Team in division #1
+     * @param y Team in division #2
+     * @param z Team in division #3
+     * @param a Team in division #4
+     * @return Division winner
+     */
     public static String divisionPlayoffs(Team x, Team y, Team z, Team a){
         x.playGame(y);
         x.playGame(z);

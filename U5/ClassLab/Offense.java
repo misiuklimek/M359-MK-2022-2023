@@ -5,7 +5,13 @@ public class Offense {
     private double avgPts;
     private double avgYards;
 
-
+    /**
+     * Calculates the overall score of an offense by combining the stats on their points and
+     * yards to create a double to score it.
+     * @param avgPts Average points scored per game
+     * @param avgYards Average offense yards per game
+     * @return
+     */
     public static double calcOffense(double avgPts, double avgYards){
         double offenseScore = 0;
         if (avgPts > 30){
@@ -32,6 +38,11 @@ public class Offense {
         return offenseScore;
     }
 
+    /**
+     * Forms a team's offense and creates their offensive score using their parameters.
+     * @param avgPts Average Points per game
+     * @param avgYards Average Yards per game
+     */
     public Offense(double avgPts, double avgYards) {
         this.offenseScore = calcOffense(avgPts, avgYards);
         this.avgPts = avgPts;
