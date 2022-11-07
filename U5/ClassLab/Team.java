@@ -7,7 +7,6 @@ public class Team {
     private int wins;
     private int losses;
     private double winPerc;
-    private String div;
     private Offense teamO;
     private Defense teamD;
 
@@ -19,20 +18,13 @@ public class Team {
     public static boolean coinFlip(){
 
         int coin = (int)(Math.random() * 10)+1;
-        if (coin >= 5){
-            return true;
-        } else{
-            return false;
-        }
+        return coin >= 5;
     }
-
-
 
     // Constructor
 
-    public Team(String name, String div, Offense teamO, Defense teamD) {
+    public Team(String name, Offense teamO, Defense teamD) {
         this.name = name;
-        this.div = div;
         this.teamO = new Offense(teamO.getAvgPts(), teamO.getAvgYards());
         this.teamD = new Defense(teamD.getPtsAgainst(), teamD.getYardsAgainst(), teamD.getTakeaways());
         this.wins = 0;
@@ -40,6 +32,63 @@ public class Team {
         this.winPerc = 0;
     }
 
+    // methods
+
+    /**
+     * Plays two teams against each other in order to find the winner using their offense and defense
+     * scores to determine who should be the winner of the game.
+     * @param x Team 1
+     * @param y Team 2
+     * @return
+     */
+    public Team playGame(Team x, Team y){
+        double chance = .5;
+        double offenseDifference = x.getTeamO().getOffenseScore() - y.getTeamO().getOffenseScore();
+        double defenseDifference = x.getTeamD().getDefenseScore() - y.getTeamD().getDefenseScore();
+        if (offenseDifference > .3){
+            chance += .3;
+        } else if (offenseDifference > .15){
+            chance += .15;
+        } else if (offenseDifference > .05){
+            chance += .1;
+        } else if (offenseDifference > -.05) {
+            chance -= .1;
+        } else if (offenseDifference > -.15) {
+            chance -= .15;
+        } else if (offenseDifference > -.30) {
+            chance -= .3;
+        }
+        if (defenseDifference > .3){
+            chance += .3;
+        } else if (defenseDifference > .15){
+            chance += .15;
+        } else if (defenseDifference > .05){
+            chance += .1;
+        } else if (defenseDifference > -.05) {
+            chance -= .1;
+        } else if (defenseDifference > -.15) {
+            chance -= .15;
+        } else if (defenseDifference > -.30) {
+            chance -= .3;
+        }
+        if (chance < .5){
+            return y;
+        } else if (chance > .5) {
+            return x;
+        } else {
+            if (coinFlip()){
+                return x;
+            } else
+                return y;
+        }
+    }
+
+    /**
+     * Calculates the win percentage by dividing wins by losses.
+     */
+    public void calcWinPerc(){
+        winPerc = wins/losses;
+    }
 
     //get/set
 
@@ -75,13 +124,6 @@ public class Team {
         this.winPerc = winPerc;
     }
 
-    public String getDivision() {
-        return div;
-    }
-
-    public void setDivision(String division) {
-        this.div = division;
-    }
 
     public Offense getTeamO() {
         return teamO;

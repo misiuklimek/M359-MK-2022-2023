@@ -5,6 +5,7 @@ public class Offense {
     private double avgPts;
     private double avgYards;
 
+
     public static double calcOffense(double avgPts, double avgYards){
         double offenseScore = 0;
         if (avgPts > 30){
@@ -36,8 +37,6 @@ public class Offense {
         this.avgPts = avgPts;
         this.avgYards = avgYards;
     }
-
-
 
 
     public double getOffenseScore() {

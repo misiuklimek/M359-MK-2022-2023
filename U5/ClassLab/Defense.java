@@ -8,13 +8,14 @@ public class Defense {
     private double takeaways;
 
     public Defense(double ptsAgainst, double yardsAgainst, double takeaways) {
-        this.defenseScore = 0;
+        this.defenseScore = calcDefense(ptsAgainst, yardsAgainst, takeaways);
         this.ptsAgainst = ptsAgainst;
         this.yardsAgainst = yardsAgainst;
         this.takeaways = takeaways;
     }
 
-    public void calcDefense() {
+    public static double calcDefense(double ptsAgainst, double yardsAgainst, double takeaways) {
+        double defenseScore = 0;
         if (ptsAgainst > 25) {
             defenseScore += .1;
         } else if (ptsAgainst > 22.5) {
@@ -27,13 +28,13 @@ public class Defense {
             defenseScore += .5;
         }
 
-        if (yardsAgainst < 400) {
+        if (yardsAgainst > 400) {
             defenseScore += .1;
-        } else if (yardsAgainst < 380) {
+        } else if (yardsAgainst > 380) {
             defenseScore += .2;
-        } else if (yardsAgainst < 360) {
+        } else if (yardsAgainst > 360) {
             defenseScore += .3;
-        } else if (yardsAgainst < 330) {
+        } else if (yardsAgainst > 330) {
             defenseScore += .4;
         } else {
             defenseScore += .5;
@@ -46,10 +47,9 @@ public class Defense {
                 defenseScore = defenseScore * 1.1;
             }
         }
-
+        return defenseScore;
     }
-        public double getDefenseScore() {
-        calcDefense();
+    public double getDefenseScore() {
         return defenseScore;
     }
 
