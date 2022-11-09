@@ -9,8 +9,8 @@ public class Team {
     private Offense teamO;
     private Defense teamD;
 
-    public static String winPercent = "";
-    public static String getWinPercent(){
+    public static double winPercent = 0;
+    public static double getWinPercent(){
         return winPercent;
     }
 

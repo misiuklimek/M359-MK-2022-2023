@@ -6,6 +6,11 @@ public class NFLTester {
         Team lions = new Team("Detroit Lions", new Offense(24.4,400), new Defense(1,1,8));
 
         System.out.println(bears.playGame(lions));
+
+
+
+
+
     }
 
     /**
@@ -15,7 +20,7 @@ public class NFLTester {
      * @param y Team in division #2
      * @param z Team in division #3
      * @param a Team in division #4
-     * @return Division winner
+     * @return Team with most wins
      */
     public static String divisionPlayoffs(Team x, Team y, Team z, Team a){
         x.playGame(y);
@@ -24,7 +29,14 @@ public class NFLTester {
         y.playGame(z);
         y.playGame(a);
         z.playGame(a);
-        return "";
+        int xWins = x.getWins();
+        int yWins = y.getWins();
+        int zWins = z.getWins();
+        int aWins = a.getWins();
+        String winner = "";
+
+
+        return "Winner is: " + winner;
     }
 
 }
