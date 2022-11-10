@@ -8,11 +8,7 @@ public class Team {
     private int losses;
     private Offense teamO;
     private Defense teamD;
-
-    public static double winPercent = 0;
-    public static double getWinPercent(){
-        return winPercent;
-    }
+    
 
     /**
      * Flips a coin 50/50 chance either way
@@ -27,7 +23,6 @@ public class Team {
     // Constructor
 
     /**
-     * Creates an NFL team as its own object.
      * @param name Name of the team
      * @param teamO Team's offense, has additional parameters
      * @param teamD Team's defense, has additional parameters
@@ -99,7 +94,6 @@ public class Team {
             }
         }
     }
-
 
 
 

@@ -8,7 +8,6 @@ public class Defense {
     private double takeaways;
 
     /**
-     * Constructor that creates a Team's defense and includes their defensive score.
      * @param ptsAgainst Points the team allows on average per game
      * @param yardsAgainst Yards they allow on average per game
      * @param takeaways Amount of takeaways the team has all season
@@ -18,6 +17,9 @@ public class Defense {
         this.ptsAgainst = ptsAgainst;
         this.yardsAgainst = yardsAgainst;
         this.takeaways = takeaways;
+        if (this.defenseScore > bestDefenseScore){
+            bestDefenseScore = this.defenseScore;
+        }
     }
 
     /**
@@ -62,6 +64,12 @@ public class Defense {
             }
         }
         return defenseScore;
+    }
+
+    public static double bestDefenseScore = 0.0;
+
+    public static double getBestDefenseScore(){
+        return bestDefenseScore;
     }
 
 

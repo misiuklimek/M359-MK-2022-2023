@@ -5,6 +5,12 @@ public class Offense {
     private double avgPts;
     private double avgYards;
 
+    public static double bestOffenseScore  = 0.0;
+
+    public static double getBestOffenseScore(){
+        return bestOffenseScore;
+    }
+
     /**
      * Calculates the overall score of an offense by combining the stats on their points and
      * yards to create a double to score it.
@@ -47,6 +53,9 @@ public class Offense {
         this.offenseScore = calcOffense(avgPts, avgYards);
         this.avgPts = avgPts;
         this.avgYards = avgYards;
+        if (this.offenseScore > bestOffenseScore){
+            bestOffenseScore = this.offenseScore;
+        }
     }
 
 

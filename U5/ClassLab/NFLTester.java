@@ -2,12 +2,10 @@ package U5.ClassLab;
 
 public class NFLTester {
     public static void main(String[] args) {
-        Team bears = new Team("Chicago Bears", new Offense(20.4,378), new Defense(18,300,14));
-        Team lions = new Team("Detroit Lions", new Offense(24.4,400), new Defense(1,1,8));
+        Team bears = new Team("Chicago Bears", new Offense(20.4,378), new Defense(18,300,9));
+        Team lions = new Team("Detroit Lions", new Offense(24.4,400), new Defense(1,1,2));
 
         System.out.println(bears.playGame(lions));
-
-
 
 
 
@@ -37,6 +35,30 @@ public class NFLTester {
 
 
         return "Winner is: " + winner;
+    }
+
+    /**
+     *
+     * @param x Team 1
+     * @param y Team 2
+     * @param z Team 3
+     * @param a Team 4
+     * @return
+     */
+    public static String divisionToString(Team x, Team y, Team z, Team a){
+        String output = "* * * * * * * * * * * * * * *\n";
+
+        output += "Team: " + x.getName() + "\n\tOffense Score: " + x.getTeamO().getOffenseScore()
+                + "\n\tDefense Score: " + x.getTeamD().getDefenseScore() + "\n\n";
+        output += "Team: " + y.getName() + "\n\tOffense Score: " + y.getTeamO().getOffenseScore()
+                + "\n\tDefense Score: " + y.getTeamD().getDefenseScore() + "\n\n";
+        output += "Team: " + z.getName() + "\n\tOffense Score: " + z.getTeamO().getOffenseScore()
+                + "\n\tDefense Score: " + z.getTeamD().getDefenseScore() + "\n\n";
+        output += "Team: " + a.getName() + "\n\tOffense Score: " + a.getTeamO().getOffenseScore()
+                + "\n\tDefense Score: " + a.getTeamD().getDefenseScore() + "\n\n";
+
+        output += "* * * * * * * * * * * * * * *\n";
+        return output;
     }
 
 }
