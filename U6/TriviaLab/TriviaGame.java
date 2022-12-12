@@ -11,6 +11,8 @@ public class TriviaGame {
     private int wrong;
     private String textFileName;
     private String playerName;
+    private boolean ifDone;
+    private int streak;
 
     public TriviaGame(String fileName) {
         this.questions = new Question[0];
@@ -19,6 +21,8 @@ public class TriviaGame {
         this.wrong = 0;
         this.textFileName = fileName;
         this.playerName = "";
+        this.ifDone = false;
+        this.streak = 0;
     }
 
     public void readQuestionFile() throws FileNotFoundException {
@@ -46,30 +50,49 @@ public class TriviaGame {
         }
     }
 
-    public void startGame(){
+    public void startGame() throws FileNotFoundException {
         Scanner input = new Scanner(System.in);
         System.out.println("*#* WELCOME TO MICHAEL'S TRIVIA *#*\nYou will earn points for every correct question!\nWhat is your name?");
         playerName = input.nextLine();
-        System.out.println("Lets Start " + playerName + "!");
-
+        System.out.println("Lets Start " + playerName + "! Please answer with the letter of your chosen answer!\n");
+        getNextQuestion();
     }
 
 
 
-    public Question getNextQuestion() throws FileNotFoundException {
+    public void getNextQuestion() throws FileNotFoundException {
+        Scanner input = new Scanner(System.in);
         Question output = getRandomQuestion();
         while (output.isIfUsed()){
             output = getRandomQuestion();
         }
-        return output;
+        output.setIfUsed(true);
+        System.out.println(output);
+        String answer = input.nextLine();
+        if (answer.equalsIgnoreCase(output.getCorrectA())){
+            correct++;
+            streak++;
+            pts += output.getPointAmt();
+            System.out.println("Congratulations! Your answer is correct!\n");
+        } else{
+            wrong++;
+            streak = 0;
+            System.out.println("Oops! Your answer is incorrect.\n");
+        }
+        System.out.println(statsToString());
     }
 
+    public String statsToString(){
+        String output = "Total Correct: "+correct+"\nTotal Incorrect: "+wrong;
+        output += "\nCurrent Streak: "+streak+"\nPoints Earned: "+pts+"\n";
+        return output;
+    }
 
     public Question getRandomQuestion() throws FileNotFoundException {
         File myFile = new File(textFileName);
         Scanner fileIn = new Scanner(myFile);
         int numQuestions = fileIn.nextInt();
-        int randomNum = (int)(Math.random()*(numQuestions+1));
+        int randomNum = (int)(Math.random()*(numQuestions));
         return questions[randomNum];
     }
 
