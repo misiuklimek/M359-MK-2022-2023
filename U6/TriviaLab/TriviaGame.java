@@ -11,8 +11,9 @@ public class TriviaGame {
     private int wrong;
     private String textFileName;
     private String playerName;
-    private boolean ifDone;
     private int streak;
+    private int questionsDone;
+    private int numQuestions;
 
     public TriviaGame(String fileName) {
         this.questions = new Question[0];
@@ -21,14 +22,15 @@ public class TriviaGame {
         this.wrong = 0;
         this.textFileName = fileName;
         this.playerName = "";
-        this.ifDone = false;
         this.streak = 0;
+        this.questionsDone = 0;
+        this.numQuestions = 0;
     }
 
     public void readQuestionFile() throws FileNotFoundException {
         File myFile = new File(textFileName);
         Scanner fileIn = new Scanner(myFile);
-        int numQuestions = fileIn.nextInt();
+        numQuestions = fileIn.nextInt();
         fileIn.nextLine();      // dummy read
 
         questions = new Question[numQuestions];
@@ -55,7 +57,13 @@ public class TriviaGame {
         System.out.println("*#* WELCOME TO MICHAEL'S TRIVIA *#*\nYou will earn points for every correct question!\nWhat is your name?");
         playerName = input.nextLine();
         System.out.println("Lets Start " + playerName + "! Please answer with the letter of your chosen answer!\n");
-        getNextQuestion();
+    }
+
+    public void finishGame(){
+        System.out.println("\n\nThank you for Playing! Here are your final stats:");
+        System.out.println(statsToString());
+        System.out.println("Correct Percent: " + (correct/numQuestions));
+        System.out.println("Thank you again! Have a great day!");
     }
 
 
@@ -84,7 +92,7 @@ public class TriviaGame {
 
     public String statsToString(){
         String output = "Total Correct: "+correct+"\nTotal Incorrect: "+wrong;
-        output += "\nCurrent Streak: "+streak+"\nPoints Earned: "+pts+"\n";
+        output += "\nCurrent Streak: "+streak+"\nPoints Earned: "+pts;
         return output;
     }
 
@@ -96,6 +104,13 @@ public class TriviaGame {
         return questions[randomNum];
     }
 
+    public int getNumQuestions() {
+        return numQuestions;
+    }
+
+    public void setNumQuestions(int numQuestions) {
+        this.numQuestions = numQuestions;
+    }
 
     public String getTextFileName() {
         return textFileName;
@@ -143,5 +158,21 @@ public class TriviaGame {
 
     public void setWrong(int wrong) {
         this.wrong = wrong;
+    }
+
+    public int getStreak() {
+        return streak;
+    }
+
+    public void setStreak(int streak) {
+        this.streak = streak;
+    }
+
+    public int getQuestionsDone() {
+        return questionsDone;
+    }
+
+    public void setQuestionsDone(int questionsDone) {
+        this.questionsDone = questionsDone;
     }
 }
