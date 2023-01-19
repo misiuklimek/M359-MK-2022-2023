@@ -28,7 +28,14 @@ public class Show {
     }
 
     public String toString(){
-        String output = date+"\t$"+price+"\t"+qty+"\t"+artist+"\t\t\t"+city;
+        String output = date+"\t$"+price+"\t"+qty+"\t"+artist;
+
+        int numSpaces = 22 - artist.length();
+        for(int i =0; i<numSpaces; i++){
+            output += " ";
+        }
+
+        output += city+"\n";
         return output;
     }
 
