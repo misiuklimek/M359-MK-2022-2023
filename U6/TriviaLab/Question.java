@@ -1,27 +1,39 @@
 package U6.TriviaLab;
 
 public class Question {
+    //Instance Variables
     private int pointAmt;
     private String question;
     private String[] answers;
     private String correctA;
     private boolean ifUsed;
 
+
+    //Constructor
     public Question(int pointAmt, String question, String[] answers, String correctA) {
         this.pointAmt = pointAmt;
         this.question = question;
         this.answers = answers;
         this.correctA = correctA;
-        this.ifUsed = false;
+        this.ifUsed = false;        //Changed if the question is used, so it will not be repeated
     }
 
+
+
+    //Methods:
+
+    /**
+     * Converts the question into a string that is readable to the player.
+     * @return String containing question and answer options
+     */
     public String toString(){
-        return question +"\n\t"+answers[0]+"\n\t"+answers[1]+"\n\t"+answers[2]+"\n\t"+answers[3];
+        return question +" ("+pointAmt+")\n\t"+answers[0]+"\n\t"+answers[1]+"\n\t"+answers[2]+"\n\t"+answers[3]+"\nAnswer:";
     }
 
 
 
 
+    // Getters and Setters:
     public int getPointAmt() {
         return pointAmt;
     }

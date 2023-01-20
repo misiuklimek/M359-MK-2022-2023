@@ -14,8 +14,7 @@ public class TicketMaster {
 
     public static String recordResponseString(){
         Scanner input = new Scanner(System.in);
-        String answer = input.nextLine();
-        return answer;
+        return input.next();
     }
     public static int recordResponse(){
         Scanner input = new Scanner(System.in);
@@ -34,6 +33,7 @@ public class TicketMaster {
                 input.nextLine();
             }
         }
+        input.nextLine();
         return answer;
     }
     public static void continueSite(Boolean ifQuit, ArrayList<Show> shows){
@@ -45,7 +45,7 @@ public class TicketMaster {
 
             if(answer == 5){
                 System.out.println("\nShows are sorted by Price (Descending)");
-                sortByPriceDescending(shows);
+                //sortByPriceDescending(shows);
                 System.out.println(optionsToString(shows));
                 System.out.println("\n"+options());
             } else if (answer == 4) {
@@ -64,11 +64,16 @@ public class TicketMaster {
                 System.out.println(optionsToString(shows));
                 System.out.println("\n"+options());
             } else if (answer == 1) {
+                System.out.println("Please enter a city:");
                 ArrayList<Show> temp = new ArrayList<>();
                 temp = sortByCity(shows);
-                System.out.println("\nShows are sorted by City");
-                System.out.println(optionsToString(temp));
-                System.out.println("\n"+options());
+                if (temp.size() == 0){
+                    System.out.println("Sorry! There are no shows in this city!\nPlease try another search (1-6):");
+                } else {
+                    System.out.println("\nShows are sorted by City");
+                    System.out.println(optionsToString(temp));
+                    System.out.println("\n" + options());
+                }
             }
             answer = recordResponse();
             if (answer == 6){
@@ -110,11 +115,12 @@ public class TicketMaster {
 
 //*
     //public static void sortByPriceDescending(ArrayList<Show> shows){
-        //ArrayList<Integer> priceList = new ArrayList<>();
-        //for(Show prices : shows){
+       // ArrayList<Integer> priceList = new ArrayList<>();
+        //ArrayList<Show> rearranged = new ArrayList<>();
+       // for(Show prices : shows){
 
-        //}
-      //  Arrays.sort(priceList);
+       // }
+       // shows = rearranged;
     //}
 
 
