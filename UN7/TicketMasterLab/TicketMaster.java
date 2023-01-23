@@ -2,9 +2,7 @@ package UN7.TicketMasterLab;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class TicketMaster {
     private ArrayList<Show> shows;
@@ -14,7 +12,7 @@ public class TicketMaster {
 
     public static String recordResponseString(){
         Scanner input = new Scanner(System.in);
-        return input.next();
+        return input.nextLine();
     }
     public static int recordResponse(){
         Scanner input = new Scanner(System.in);
@@ -45,7 +43,7 @@ public class TicketMaster {
 
             if(answer == 5){
                 System.out.println("\nShows are sorted by Price (Descending)");
-                //sortByPriceDescending(shows);
+                sortByPriceDescending(shows);
                 System.out.println(optionsToString(shows));
                 System.out.println("\n"+options());
             } else if (answer == 4) {
@@ -65,7 +63,7 @@ public class TicketMaster {
                 System.out.println("\n"+options());
             } else if (answer == 1) {
                 System.out.println("Please enter a city:");
-                ArrayList<Show> temp = new ArrayList<>();
+                ArrayList<Show> temp;
                 temp = sortByCity(shows);
                 if (temp.size() == 0){
                     System.out.println("Sorry! There are no shows in this city!\nPlease try another search (1-6):");
@@ -86,7 +84,7 @@ public class TicketMaster {
     public TicketMaster(String fileName) {
         this.fileName = fileName;
         this.numOptions = 0;
-        this.shows = new ArrayList<Show>();
+        this.shows = new ArrayList<>();
         this.ifQuit = false;
     }
 
@@ -114,19 +112,15 @@ public class TicketMaster {
     }
 
 //*
-    //public static void sortByPriceDescending(ArrayList<Show> shows){
-       // ArrayList<Integer> priceList = new ArrayList<>();
-        //ArrayList<Show> rearranged = new ArrayList<>();
-       // for(Show prices : shows){
+    public static void sortByPriceDescending(ArrayList<Show> shows){
 
-       // }
-       // shows = rearranged;
-    //}
+    }
 
 
     public static void sortByPriceAscending(ArrayList<Show> shows){
 
     }
+
 
     public static void sortByPerformerA(ArrayList<Show> shows){
 
