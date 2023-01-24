@@ -111,20 +111,38 @@ public class TicketMaster {
         }
     }
 
-//*
-    public static void sortByPriceDescending(ArrayList<Show> shows){
 
+    public static void sortByPriceDescending(ArrayList<Show> shows){
+        for(int i=0;i<shows.size();i++){ //repeats grabbing first show and moving upwards through array
+            for(int j=i+1;j<shows.size();j++){ //repeats grabbing the next show in the array
+                Show tempI=shows.get(i);
+                Show tempJ=shows.get(j);
+                if(tempI.getPrice()<tempJ.getPrice()){ // compares the first show with the next show in the array and
+                    shows.set(i,tempJ);                // rearranges them by size if in wrong order
+                    shows.set(j,tempI);
+                }
+            }
+        }
     }
 
-
     public static void sortByPriceAscending(ArrayList<Show> shows){
-
+        for(int i=0;i<shows.size();i++){        //repeats grabbing first show and moving upwards through array
+            for(int j=i+1;j<shows.size();j++){  //repeats grabbing the next show in the array
+                Show tempI=shows.get(i);
+                Show tempJ=shows.get(j);
+                if(tempI.getPrice()>tempJ.getPrice()){  // compares the first show with the next show in the array and
+                    shows.set(i,tempJ);                 // rearranges them by size if in wrong order
+                    shows.set(j,tempI);
+                }
+            }
+        }
     }
 
 
     public static void sortByPerformerA(ArrayList<Show> shows){
 
     }
+
 
     public static void sortByPerformerZ(ArrayList<Show> shows){
 
@@ -138,7 +156,6 @@ public class TicketMaster {
                 outputArray.add(curShow);
             }
         }
-
         return outputArray;
     }
 
