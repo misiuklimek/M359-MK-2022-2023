@@ -46,7 +46,7 @@ public class TicketMaster {
     }
 
     /**
-     * Void method that reads the readers response using recordResponse method and then repeats until user
+     * Void method that reads the reader's response using recordResponse method and then repeats until user
      * chooses quit option. While method is running, response is used to alter array and print the adjusted array
      * with description to reader. This is done by calling static methods that either create a new array
      * or alter the shows arrayList to specified order.
@@ -98,6 +98,10 @@ public class TicketMaster {
         }
     }
 
+    /**
+     * Constructor that creates an array for shows and holds the name of the show file
+     * @param fileName Name path for show doc
+     */
     public TicketMaster(String fileName) {
         this.fileName = fileName;
         this.numOptions = 0;
@@ -105,6 +109,10 @@ public class TicketMaster {
         this.ifQuit = false;
     }
 
+    /**
+     * Scans in show file and creates new scanner object. Uses while loop
+     * @throws FileNotFoundException if file path not found
+     */
     public void loadFile() throws FileNotFoundException {
         File myFile = new File(fileName);
         Scanner fileIn = new Scanner(myFile);
@@ -130,40 +138,55 @@ public class TicketMaster {
 
 
     public static void sortByPriceDescending(ArrayList<Show> shows){
-        for(int i=0;i<shows.size();i++){ //repeats grabbing first show and moving upwards through array
-            for(int j=i+1;j<shows.size();j++){ //repeats grabbing the next show in the array
-                Show tempI=shows.get(i);
-                Show tempJ=shows.get(j);
-                if(tempI.getPrice()<tempJ.getPrice()){ // compares the first show with the next show in the array and
-                    shows.set(i,tempJ);                // rearranges them by size if in wrong order
-                    shows.set(j,tempI);
-                }
-            }
-        }
+        //for(int i=0;i<shows.size();i++){ //repeats grabbing first show and moving upwards through array
+         //   for(int j=i+1;j<shows.size();j++){ //repeats grabbing the next show in the array
+          //      Show tempI=shows.get(i);
+           //     Show tempJ=shows.get(j);
+           //     if(tempI.getPrice()<tempJ.getPrice()){ // compares the first show with the next show in the array and
+          //          shows.set(i,tempJ);                // rearranges them by size if in wrong order
+         //           shows.set(j,tempI);
+         //       }
+        //    }
+       // }
     }
 
     public static void sortByPriceAscending(ArrayList<Show> shows){
-        for(int i=0;i<shows.size();i++){        //repeats grabbing first show and moving upwards through array
-            for(int j=i+1;j<shows.size();j++){  //repeats grabbing the next show in the array
-                Show tempI=shows.get(i);
-                Show tempJ=shows.get(j);
-                if(tempI.getPrice()>tempJ.getPrice()){  // compares the first show with the next show in the array and
-                    shows.set(i,tempJ);                 // rearranges them by size if in wrong order
-                    shows.set(j,tempI);
-                }
-            }
-        }
+        //for(int i=0;i<shows.size();i++){        //repeats grabbing first show and moving upwards through array
+        //    for(int j=i+1;j<shows.size();j++){  //repeats grabbing the next show in the array
+        //        Show tempI=shows.get(i);
+        //        Show tempJ=shows.get(j);
+         //       if(tempI.getPrice()>tempJ.getPrice()){  // compares the first show with the next show in the array and
+         //           shows.set(i,tempJ);                 // rearranges them by size if in wrong order
+         //           shows.set(j,tempI);
+         //       }
+        //    }
+       // }
+
     }
 
 
+
     public static void sortByPerformerA(ArrayList<Show> shows){
-        for(int i=0;i<shows.size();i++){ //repeats grabbing first show and moving upwards through array
-            for(int j=i+1;j<shows.size();j++){ //repeats grabbing the next show in the array
-                Show tempI=shows.get(i);
-                Show tempJ=shows.get(j);
-                if(tempI.getArtist().compareToIgnoreCase(tempJ.getArtist()) > 0){ // compares the first show with the next show in the array and
-                    shows.set(i,tempJ);                // rearranges them by size if in wrong order
-                    shows.set(j,tempI);
+       // for(int i=0;i<shows.size();i++){ //repeats grabbing first show and moving upwards through array
+        //    for(int j=i+1;j<shows.size();j++){ //repeats grabbing the next show in the array
+       //         Show tempI=shows.get(i);
+       //         Show tempJ=shows.get(j);
+       //         if(tempI.getArtist().compareToIgnoreCase(tempJ.getArtist()) > 0){ // compares the first show with the next show in the array and
+       //             shows.set(i,tempJ);                // rearranges them by size if in wrong order
+       //             shows.set(j,tempI);
+       //         }
+       //     }
+      //  }
+        for(int i=0; i<shows.size()-1;i++){
+            int min = i;
+            for (int j = i+1;j<shows.size();j++){
+                if (shows.get(j).getArtist().compareToIgnoreCase(shows.get(min).getArtist()) > 0){
+                    min = j;
+                }
+                if (j != min) {
+                    Show temp = shows.get(j);
+                    shows.set(j, shows.get(min));
+                    shows.set(min, temp);
                 }
             }
         }
@@ -171,16 +194,31 @@ public class TicketMaster {
 
 
     public static void sortByPerformerZ(ArrayList<Show> shows){
-        for(int i=0;i<shows.size();i++){        //repeats grabbing first show and moving upwards through array
-            for(int j=i+1;j<shows.size();j++){  //repeats grabbing the next show in the array
-                Show tempI=shows.get(i);
-                Show tempJ=shows.get(j);
-                if(tempI.getArtist().compareToIgnoreCase(tempJ.getArtist()) < 0){       // compares the first show with the next show in the array and
-                    shows.set(i,tempJ);                                                 // rearranges them by size if in wrong order
-                    shows.set(j,tempI);
-                }
+     //   for(int i=0;i<shows.size();i++){        //repeats grabbing first show and moving upwards through array
+      //      for(int j=i+1;j<shows.size();j++){  //repeats grabbing the next show in the array
+      //          Show tempI=shows.get(i);
+       //         Show tempJ=shows.get(j);
+      //          if(tempI.getArtist().compareToIgnoreCase(tempJ.getArtist()) < 0){       // compares the first show with the next show in the array and
+      //             shows.set(i,tempJ);                                                 // rearranges them by size if in wrong order
+       //             shows.set(j,tempI);
+       //         }
+       //     }
+      //  }
+    }
+
+    /**
+     * Finds the lowest alphabetical value of an artist name meant for selection sorting
+     * @param list Arraylist of shows
+     * @return lowest alphabetical show
+     */
+    public static Show findMin(ArrayList<Show> list) {
+        Show lowestVal = list.get(0);
+        for (Show curShow : list){
+            if (curShow.getArtist().compareTo(lowestVal.getArtist()) > 0){
+                lowestVal = curShow;
             }
         }
+        return lowestVal;
     }
 
     public static ArrayList<Show> sortByCity(ArrayList<Show> shows){

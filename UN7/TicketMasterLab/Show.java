@@ -27,6 +27,13 @@ public class Show {
         this.city = city;
     }
 
+    public boolean equals(Show other){
+        if(date.equals(other.date) && artist.equals(other.artist)){
+            return true;
+        } else{
+            return false;
+        }
+    }
     public String toString(){
         String output = date+"\t$"+price+"\t"+qty+"\t"+artist;
 
