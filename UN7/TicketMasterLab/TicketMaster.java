@@ -10,10 +10,20 @@ public class TicketMaster {
     private String fileName;
     boolean ifQuit;
 
+    /**
+     * Reads the users input in the format of a string
+     * @return String of response
+     */
     public static String recordResponseString(){
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
+
+    /**
+     * Records the response of the reader as an integer. If the user inputs a bad response
+     * method uses catch blocks to catch the type of mistake and allow the user to try again.
+     * @return Int of users response
+     */
     public static int recordResponse(){
         Scanner input = new Scanner(System.in);
         boolean tryAgain = true;
@@ -34,34 +44,43 @@ public class TicketMaster {
         input.nextLine();
         return answer;
     }
-    public static void continueSite(Boolean ifQuit, ArrayList<Show> shows){
-        int answer = recordResponse();
 
-        while (!ifQuit){
+    /**
+     * Void method that reads the readers response using recordResponse method and then repeats until user
+     * chooses quit option. While method is running, response is used to alter array and print the adjusted array
+     * with description to reader. This is done by calling static methods that either create a new array
+     * or alter the shows arrayList to specified order.
+     * @param ifQuit Boolean of if the method should continue or end
+     * @param shows arrayList of shows
+     */
+    public static void continueSite(Boolean ifQuit, ArrayList<Show> shows){
+        int answer = recordResponse();              //Records the users first choice
+
+        while (!ifQuit){            //While loop continues while ifQuit is false
             if (answer == 6){
                 ifQuit = true;
                 System.out.println("\nThank you for using Ticket Master!\n\t\tHave a great Day!");
-            } else if(answer == 5){
+            } else if(answer == 5){             //Orders in price descending and prints
                 System.out.println("\nShows are sorted by Price (Descending)");
                 sortByPriceDescending(shows);
                 System.out.println(optionsToString(shows));
                 System.out.println("\n"+options());
-            } else if (answer == 4) {
+            } else if (answer == 4) {           //Orders in price ascending and prints
                 System.out.println("\nShows are sorted by Price (Ascending)");
                 sortByPriceAscending(shows);
                 System.out.println(optionsToString(shows));
                 System.out.println("\n"+options());
-            } else if (answer == 3) {
+            } else if (answer == 3) {           //Orders shows by artist alphabetically starting with z to a
                 System.out.println("\nShows are sorted by Performer (Z-A)");
                 sortByPerformerZ(shows);
                 System.out.println(optionsToString(shows));
                 System.out.println("\n"+options());
-            } else if (answer == 2) {
+            } else if (answer == 2) {           //Orders shows by artist alphabetically starting with a to z
                 System.out.println("\nShows are sorted by Performer (A-Z)");
                 sortByPerformerA(shows);
                 System.out.println(optionsToString(shows));
                 System.out.println("\n"+options());
-            } else if (answer == 1) {
+            } else if (answer == 1) {           //allows reader to input a city and prints new array of just the cities requested
                 System.out.println("Please enter a city:");
                 ArrayList<Show> temp;
                 temp = sortByCity(shows);
