@@ -36,12 +36,12 @@ public class TicketMaster {
     }
     public static void continueSite(Boolean ifQuit, ArrayList<Show> shows){
         int answer = recordResponse();
-        if (answer == 6){
-            ifQuit = true;
-        }
-        while (!ifQuit){
 
-            if(answer == 5){
+        while (!ifQuit){
+            if (answer == 6){
+                ifQuit = true;
+                System.out.println("\nThank you for using Ticket Master!\n\t\tHave a great Day!");
+            } else if(answer == 5){
                 System.out.println("\nShows are sorted by Price (Descending)");
                 sortByPriceDescending(shows);
                 System.out.println(optionsToString(shows));
@@ -74,9 +74,7 @@ public class TicketMaster {
                 }
             }
             answer = recordResponse();
-            if (answer == 6){
-                ifQuit = true;
-            }
+
 
         }
     }
@@ -140,12 +138,30 @@ public class TicketMaster {
 
 
     public static void sortByPerformerA(ArrayList<Show> shows){
-
+        for(int i=0;i<shows.size();i++){ //repeats grabbing first show and moving upwards through array
+            for(int j=i+1;j<shows.size();j++){ //repeats grabbing the next show in the array
+                Show tempI=shows.get(i);
+                Show tempJ=shows.get(j);
+                if(tempI.getArtist().compareToIgnoreCase(tempJ.getArtist()) > 0){ // compares the first show with the next show in the array and
+                    shows.set(i,tempJ);                // rearranges them by size if in wrong order
+                    shows.set(j,tempI);
+                }
+            }
+        }
     }
 
 
     public static void sortByPerformerZ(ArrayList<Show> shows){
-
+        for(int i=0;i<shows.size();i++){        //repeats grabbing first show and moving upwards through array
+            for(int j=i+1;j<shows.size();j++){  //repeats grabbing the next show in the array
+                Show tempI=shows.get(i);
+                Show tempJ=shows.get(j);
+                if(tempI.getArtist().compareToIgnoreCase(tempJ.getArtist()) < 0){       // compares the first show with the next show in the array and
+                    shows.set(i,tempJ);                                                 // rearranges them by size if in wrong order
+                    shows.set(j,tempI);
+                }
+            }
+        }
     }
 
     public static ArrayList<Show> sortByCity(ArrayList<Show> shows){
