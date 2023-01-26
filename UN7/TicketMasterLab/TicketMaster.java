@@ -121,14 +121,11 @@ public class TicketMaster {
             double price = fileIn.nextDouble();
             int qty = fileIn.nextInt();
 
-
             String restOfStr = fileIn.nextLine();
             int index = restOfStr.indexOf(",");
-            String artist = restOfStr.substring(0,index);
-
+            String artist = restOfStr.substring(1,index);
 
             String city = restOfStr.substring(index+2);
-
 
             Show temp = new Show(date, price, qty, artist, city);
             shows.add(temp);
@@ -138,88 +135,85 @@ public class TicketMaster {
 
 
     public static void sortByPriceDescending(ArrayList<Show> shows){
-        //for(int i=0;i<shows.size();i++){ //repeats grabbing first show and moving upwards through array
-         //   for(int j=i+1;j<shows.size();j++){ //repeats grabbing the next show in the array
-          //      Show tempI=shows.get(i);
-           //     Show tempJ=shows.get(j);
-           //     if(tempI.getPrice()<tempJ.getPrice()){ // compares the first show with the next show in the array and
-          //          shows.set(i,tempJ);                // rearranges them by size if in wrong order
-         //           shows.set(j,tempI);
-         //       }
-        //    }
-       // }
+        //Repeats for every value in the array
+        for(int i=1; i<shows.size(); i++)   {
+            //Sets a temporary Show to be added after show is set
+            Show temp = shows.get(i);
+            int j= i-1;
+            //Continues code until correct value is switched
+            while(j >=0 && temp.getPrice() >= shows.get(j).getPrice())   {
+                shows.set(j+1,shows.get(j));
+                j--;
+            }
+            //Re-adds show that was set over
+            shows.set(j+1,temp);
+        }
+
     }
 
     public static void sortByPriceAscending(ArrayList<Show> shows){
-        //for(int i=0;i<shows.size();i++){        //repeats grabbing first show and moving upwards through array
-        //    for(int j=i+1;j<shows.size();j++){  //repeats grabbing the next show in the array
-        //        Show tempI=shows.get(i);
-        //        Show tempJ=shows.get(j);
-         //       if(tempI.getPrice()>tempJ.getPrice()){  // compares the first show with the next show in the array and
-         //           shows.set(i,tempJ);                 // rearranges them by size if in wrong order
-         //           shows.set(j,tempI);
-         //       }
-        //    }
-       // }
+        //Repeats for every value in the array
+        for(int i=1; i<shows.size(); i++)   {
+            //Sets a temporary Show to be added after show is set
+            Show temp = shows.get(i);
+            int j= i-1;
+            //Continues code until correct value is switched
+            while(j >=0 && temp.getPrice() <= shows.get(j).getPrice())   {
+                shows.set(j+1,shows.get(j));
+                j--;
+            }
+            //Re-adds show that was set over
+            shows.set(j+1,temp);
+        }
 
     }
 
 
 
     public static void sortByPerformerA(ArrayList<Show> shows){
-       // for(int i=0;i<shows.size();i++){ //repeats grabbing first show and moving upwards through array
-        //    for(int j=i+1;j<shows.size();j++){ //repeats grabbing the next show in the array
-       //         Show tempI=shows.get(i);
-       //         Show tempJ=shows.get(j);
-       //         if(tempI.getArtist().compareToIgnoreCase(tempJ.getArtist()) > 0){ // compares the first show with the next show in the array and
-       //             shows.set(i,tempJ);                // rearranges them by size if in wrong order
-       //             shows.set(j,tempI);
-       //         }
-       //     }
-      //  }
         for(int i=0; i<shows.size()-1;i++){
             int min = i;
-            for (int j = i+1;j<shows.size();j++){
-                if (shows.get(j).getArtist().compareToIgnoreCase(shows.get(min).getArtist()) > 0){
+            //Checks if the first is smaller and then sets the minimum index to new value
+            for (int j = i+1;j<shows.size();j++) {
+                if (shows.get(j).getArtist().compareTo(shows.get(min).getArtist()) < 0) {
                     min = j;
                 }
-                if (j != min) {
-                    Show temp = shows.get(j);
-                    shows.set(j, shows.get(min));
-                    shows.set(min, temp);
-                }
+            }
+            //Rearranges the two values to make the lower value go first
+            Show temp = shows.get(i);
+            shows.set(i, shows.get(min));
+            shows.set(min, temp);
+        }
+    }
+    public static boolean ifInOrder(ArrayList<Show> shows){
+        boolean output = false;
+        for (int i = 0; i<shows.size()-1; i++){
+            if (shows.get(i).getPrice() < shows.get(i+1).getPrice()){
+                output = true;
+            } else {
+                output = false;
             }
         }
+        return output;
     }
 
 
     public static void sortByPerformerZ(ArrayList<Show> shows){
-     //   for(int i=0;i<shows.size();i++){        //repeats grabbing first show and moving upwards through array
-      //      for(int j=i+1;j<shows.size();j++){  //repeats grabbing the next show in the array
-      //          Show tempI=shows.get(i);
-       //         Show tempJ=shows.get(j);
-      //          if(tempI.getArtist().compareToIgnoreCase(tempJ.getArtist()) < 0){       // compares the first show with the next show in the array and
-      //             shows.set(i,tempJ);                                                 // rearranges them by size if in wrong order
-       //             shows.set(j,tempI);
-       //         }
-       //     }
-      //  }
+        for(int i=0; i<shows.size()-1;i++) {
+            int max = i;
+            for (int j = i + 1; j < shows.size(); j++) {
+                //Checks if the first is smaller and then sets the max index to new value
+                if (shows.get(j).getArtist().compareTo(shows.get(max).getArtist()) > 0) {
+                    max = j;
+                }
+            }
+            //Rearranges the two values to make the higher value go first
+            Show temp = shows.get(i);
+            shows.set(i, shows.get(max));
+            shows.set(max, temp);
+        }
     }
 
-    /**
-     * Finds the lowest alphabetical value of an artist name meant for selection sorting
-     * @param list Arraylist of shows
-     * @return lowest alphabetical show
-     */
-    public static Show findMin(ArrayList<Show> list) {
-        Show lowestVal = list.get(0);
-        for (Show curShow : list){
-            if (curShow.getArtist().compareTo(lowestVal.getArtist()) > 0){
-                lowestVal = curShow;
-            }
-        }
-        return lowestVal;
-    }
 
     public static ArrayList<Show> sortByCity(ArrayList<Show> shows){
         String cityPicked = recordResponseString();
