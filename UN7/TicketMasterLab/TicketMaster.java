@@ -8,7 +8,14 @@ public class TicketMaster {
     private ArrayList<Show> shows;
     private int numOptions;
     private String fileName;
-    boolean ifQuit;
+    private boolean ifQuit;
+    private final int QUIT=6;
+    private final int PRICE_DESCENDING=5;
+    private final int PRICE_ASCENDING=4;
+    private final int ARTIST_Z_A=3;
+    private final int ARTIST_A_Z=2;
+    private final int SEARCH_CITY=1;
+
 
     /**
      * Reads the users input in the format of a string
@@ -53,34 +60,34 @@ public class TicketMaster {
      * @param ifQuit Boolean of if the method should continue or end
      * @param shows arrayList of shows
      */
-    public static void continueSite(Boolean ifQuit, ArrayList<Show> shows){
+    public void continueSite(Boolean ifQuit, ArrayList<Show> shows){
         int answer = recordResponse();              //Records the users first choice
 
         while (!ifQuit){            //While loop continues while ifQuit is false
-            if (answer == 6){
+            if (answer == QUIT){
                 ifQuit = true;
                 System.out.println("\nThank you for using Ticket Master!\n\t\tHave a great Day!");
-            } else if(answer == 5){             //Orders in price descending and prints
+            } else if(answer == PRICE_DESCENDING){             //Orders in price descending and prints
                 System.out.println("\nShows are sorted by Price (Descending)");
                 sortByPriceDescending(shows);
                 System.out.println(optionsToString(shows));
                 System.out.println("\n"+options());
-            } else if (answer == 4) {           //Orders in price ascending and prints
+            } else if (answer == PRICE_ASCENDING) {           //Orders in price ascending and prints
                 System.out.println("\nShows are sorted by Price (Ascending)");
                 sortByPriceAscending(shows);
                 System.out.println(optionsToString(shows));
                 System.out.println("\n"+options());
-            } else if (answer == 3) {           //Orders shows by artist alphabetically starting with z to a
+            } else if (answer == ARTIST_Z_A) {           //Orders shows by artist alphabetically starting with z to a
                 System.out.println("\nShows are sorted by Performer (Z-A)");
                 sortByPerformerZ(shows);
                 System.out.println(optionsToString(shows));
                 System.out.println("\n"+options());
-            } else if (answer == 2) {           //Orders shows by artist alphabetically starting with a to z
+            } else if (answer == ARTIST_A_Z) {           //Orders shows by artist alphabetically starting with a to z
                 System.out.println("\nShows are sorted by Performer (A-Z)");
                 sortByPerformerA(shows);
                 System.out.println(optionsToString(shows));
                 System.out.println("\n"+options());
-            } else if (answer == 1) {           //allows reader to input a city and prints new array of just the cities requested
+            } else if (answer == SEARCH_CITY) {           //allows reader to input a city and prints new array of just the cities requested
                 System.out.println("Please enter a city:");
                 ArrayList<Show> temp;
                 temp = sortByCity(shows);
@@ -110,30 +117,34 @@ public class TicketMaster {
     }
 
     /**
-     * Scans in show file and creates new scanner object. Uses while loop
+     * Scans in show file and creates new scanner object. Uses while loop to continue to create Show objects
+     * until the documnt ends.
      * @throws FileNotFoundException if file path not found
      */
     public void loadFile() throws FileNotFoundException {
         File myFile = new File(fileName);
         Scanner fileIn = new Scanner(myFile);
-        while (fileIn.hasNext()){
-            String date = fileIn.next();
+        while (fileIn.hasNext()){               //repeats until end of test document
+            String date = fileIn.next();        //reads Show attributes into temp objects
             double price = fileIn.nextDouble();
             int qty = fileIn.nextInt();
 
-            String restOfStr = fileIn.nextLine();
+            String restOfStr = fileIn.nextLine();       //Splits line into substrings to read in objects accordingly
             int index = restOfStr.indexOf(",");
             String artist = restOfStr.substring(1,index);
 
             String city = restOfStr.substring(index+2);
 
-            Show temp = new Show(date, price, qty, artist, city);
-            shows.add(temp);
+            Show temp = new Show(date, price, qty, artist, city);      //Constructs new Show object
+            shows.add(temp);                    //adds Show into ArrayList
             numOptions++;
         }
     }
 
-
+    /**
+     * Employs Insertion sort in order to organize and update the array in descending price order
+     * @param shows Arraylist of Show objects
+     */
     public static void sortByPriceDescending(ArrayList<Show> shows){
         //Repeats for every value in the array
         for(int i=1; i<shows.size(); i++)   {
@@ -151,6 +162,10 @@ public class TicketMaster {
 
     }
 
+    /**
+     * Employs Insertion sort in order to organize and update the array in ascending price order
+     * @param shows Arraylist of Show objects
+     */
     public static void sortByPriceAscending(ArrayList<Show> shows){
         //Repeats for every value in the array
         for(int i=1; i<shows.size(); i++)   {
@@ -169,7 +184,11 @@ public class TicketMaster {
     }
 
 
-
+    /**
+     * Employs Selection sort to sort and update the array in alphabetical order from A-Z. Compares objects
+     * using the compareTo function.
+     * @param shows Arraylist of Show objects
+     */
     public static void sortByPerformerA(ArrayList<Show> shows){
         for(int i=0; i<shows.size()-1;i++){
             int min = i;
@@ -185,19 +204,12 @@ public class TicketMaster {
             shows.set(min, temp);
         }
     }
-    public static boolean ifInOrder(ArrayList<Show> shows){
-        boolean output = false;
-        for (int i = 0; i<shows.size()-1; i++){
-            if (shows.get(i).getPrice() < shows.get(i+1).getPrice()){
-                output = true;
-            } else {
-                output = false;
-            }
-        }
-        return output;
-    }
 
-
+    /**
+     * Employs Selection sort to sort and update the array in reverse alphabetical order from Z-A.
+     * Function compares objects using the compareTo function.
+     * @param shows Arraylist of Show objects
+     */
     public static void sortByPerformerZ(ArrayList<Show> shows){
         for(int i=0; i<shows.size()-1;i++) {
             int max = i;
@@ -214,7 +226,12 @@ public class TicketMaster {
         }
     }
 
-
+    /**
+     * Uses a helper function to ask the user what city he is looking for. Creates an output array and
+     * searches through the array to find and add every instance of the city into the output array.
+     * @param shows ArrayList of shows
+     * @return ArrayList of cities searched for
+     */
     public static ArrayList<Show> sortByCity(ArrayList<Show> shows){
         String cityPicked = recordResponseString();
         ArrayList<Show> outputArray = new ArrayList<>();
@@ -226,12 +243,20 @@ public class TicketMaster {
         return outputArray;
     }
 
+    /**
+     * Prints the beginning message and the users first options
+     */
     public void start(){
         System.out.println("\t\t\t\t*** Welcome To TicketMaster ***\n\tYou may search shows by cities, performer, as well as price!");
         System.out.println("\t\tPlease select one of the following options!\n\n" + options());
 
-        continueSite(ifQuit, shows);
+
     }
+
+    /**
+     * Turns the users options for search into a string
+     * @return User options String
+     */
     public static String options(){
         String output = "1. Search by city\n2. Sort by " +
         "Performer (A-Z)\n3. Search by Performer (Z-A)\n4. Sort by Price (Low-High)\n5. Sort by Price (High-Low)\n6. Quit\n";
@@ -239,6 +264,11 @@ public class TicketMaster {
         return output;
     }
 
+    /**
+     * Converts the inputted ArrayList's Show objects into a display of Shows in a chart
+     * @param shows ArrayList of Shows
+     * @return String of Shows and their attributes
+     */
     public static String optionsToString(ArrayList<Show> shows){
         String output = "Date\t\tPrice\tQty\t Performer\t\t\t  City\n-------------------------------------------------------\n";
         for(Show concert : shows){
@@ -246,5 +276,13 @@ public class TicketMaster {
         }
         return output;
 
+    }
+
+    public boolean isIfQuit() {
+        return ifQuit;
+    }
+
+    public ArrayList<Show> getShows() {
+        return shows;
     }
 }
