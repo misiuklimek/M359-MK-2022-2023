@@ -1,7 +1,7 @@
 /*
 Authors: Michael Klimek, Julia Podstawka
 Teacher: Moon Period 7
-Description: Product class creates an item that is sold at a store and has a set price and
+Description: A child of the Apparel class and grandchild of the Product class, a Shoe object doesn't/have laces, and has a size attribute
  */
 package U9.U9Lab;
 
@@ -9,6 +9,7 @@ public class Shoes extends Apparel{
     private boolean hasLaces;
     private double shoeSize;
 
+    //CONSTRUCTORS
     public Shoes(String vendor, int price, boolean onSale, String gender, String activity, String color, boolean hasLaces, double shoeSize, String productName) {
         super(vendor, price, onSale, gender, activity, color, productName);
         this.hasLaces = hasLaces;
@@ -30,6 +31,11 @@ public class Shoes extends Apparel{
     public Shoes() {
         this.hasLaces = false;
         this.shoeSize = -1;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+ "Laces: " + hasLaces + "\nShoe Size: " + shoeSize+"\n";
     }
 
     //GETTERS AND SETTERS
