@@ -126,7 +126,7 @@ public class Product {
 
     }
 
-    //public Product[][] displayResults(){
+    //public Product[] displayResults(){
         //user searches using filters for vendor, size, price, onSale, etc. and returns a Product[][] of search results
         // set number of 4 columns, rows differ by number of search results
 
