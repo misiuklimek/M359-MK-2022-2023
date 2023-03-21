@@ -9,6 +9,7 @@ public class Food extends Product{
     private boolean isFast;
     private String size;
 
+
     //CONSTRUCTORS
     public Food(String vendor, int price, boolean onSale, boolean isFast, String size, String productName) {
         super(vendor, price, onSale, productName);
@@ -72,4 +73,6 @@ public class Food extends Product{
     public void setSize(String size) {
         this.size = size;
     }
+
+
 }

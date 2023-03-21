@@ -14,6 +14,7 @@ public class Product {
     private boolean onSale;
     private String productName;
     public static int numVendors;
+    public static int numProducts;
 
     public static ArrayList<String> vendors = new ArrayList<String>();
     public static ArrayList<String> products = new ArrayList<String>();
@@ -121,11 +122,35 @@ public class Product {
         return output;
     }
 
-    public String productSearch(){
-        //  STATIC INT OF THE NUMBER OF STORES, int of products sold at the mall, prompt to search through which type of products
 
+    public ArrayList<Product> searchResults(ArrayList<Product> productArray, int var){
+        ArrayList<Product> output = new ArrayList<>();
+        if(var == 1){
+            for(Product foodItem : productArray){
+                if(foodItem.getClass().equals(Food.class)){
+                    output.add(foodItem);
+                }
+            }
+            return output;
+        }
+        if(var == 2){
+            for(Product clothingItem : productArray){
+                if(clothingItem.getClass().equals(Clothing.class)){
+                    output.add(clothingItem);
+                }
+            }
+            return output;
+        }
+        if (var == 3){
+            for(Product shoeItem : productArray){
+                if(shoeItem.getClass().equals(Shoes.class)){
+                    output.add(shoeItem);
+                }
+                return output;
+            }
+        }
+        return output;
     }
-
     //public Product[] displayResults(){
         //user searches using filters for vendor, size, price, onSale, etc. and returns a Product[][] of search results
         // set number of 4 columns, rows differ by number of search results
