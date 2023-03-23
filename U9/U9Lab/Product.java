@@ -17,11 +17,11 @@ public class Product {
     //CONSTRUCTORS
 
     /**
-     * 
-     * @param vendor
-     * @param price
-     * @param onSale
-     * @param productName
+     * Constructor with all attributes
+     * @param vendor String of vendor name
+     * @param price Int of price
+     * @param onSale Boolean on if on sale
+     * @param productName String of name
      */
     public Product(String vendor, int price, boolean onSale, String productName) {
         this.vendor = vendor;
@@ -31,10 +31,10 @@ public class Product {
     }
 
     /**
-     *
-     * @param vendor
-     * @param price
-     * @param productName
+     * Constructor with all attributes
+     * @param vendor String of vendor name
+     * @param price Int of price
+     * @param productName String of name
      */
     public Product(String vendor, int price, String productName) {
         this.vendor = vendor;
@@ -44,6 +44,9 @@ public class Product {
 
     }
 
+    /**
+     * Constructor with no attributes
+     */
     public Product() {
         this.onSale = false;
         this.price = -1;
