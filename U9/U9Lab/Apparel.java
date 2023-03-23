@@ -131,15 +131,7 @@ public class Apparel extends Product{
         return price;
     }
 
-    /**
-     * Creates a random outfit with a random top, random pants, and a random pair of shoes.
-     * @return An array of three outfit pieces
-     */
-    public Apparel[] randomOutfit(){
-        Apparel[] outfit = new Apparel[3];
-        Apparel bottom =
-        return outfit;
-    }
+
 
 
     /**

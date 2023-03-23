@@ -15,6 +15,14 @@ public class Product {
     private String productName;
 
     //CONSTRUCTORS
+
+    /**
+     * 
+     * @param vendor
+     * @param price
+     * @param onSale
+     * @param productName
+     */
     public Product(String vendor, int price, boolean onSale, String productName) {
         this.vendor = vendor;
         this.price = price;
@@ -22,6 +30,12 @@ public class Product {
         this.productName = productName;
     }
 
+    /**
+     *
+     * @param vendor
+     * @param price
+     * @param productName
+     */
     public Product(String vendor, int price, String productName) {
         this.vendor = vendor;
         this.price = price;

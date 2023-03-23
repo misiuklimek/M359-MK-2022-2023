@@ -23,66 +23,14 @@ public class ProductDriver {
         Product clothing2 = new Clothing("Lululemon",79,"Womens","Running","Black","T-Shirt","Swiftly Tech");
         Product product3 = new Product("Dicks",29,"Hydro Flask");
         Product food3 = new Food("Dunkin Donuts",2,true,"Medium","Hot Chocolate");
+        Product fillerShoes = new Shoes();
+        Product fillerClothing = new Clothing();
 
 
-        System.out.println("Welcome to the mall!\nWhat are you looking for today?");
 
-        Scanner in = new Scanner(System.in);
-        boolean tryAgain = true;
-        while(tryAgain){
-            try{
-                System.out.println("1. Food\n2. Clothing\n3. Shoes\n");
-                int num = in.nextInt();
-                in.nextLine();
+        System.out.println("Welcome to the mall!");
 
-                if(num == 1){
-                    System.out.println("Looking for : Food\n");
 
-                    // display array of available food objects
 
-                } else if(num == 2){
-                    System.out.println("Looking for : Clothing\n");
-                    // display array of available clothing objects
-                }
-                else if(num == 3){
-                    System.out.println("Looking for : Shoes\n");
-                    //display array of available shoes objects
-
-                }
-
-            } catch (Exception e){
-                System.out.println("ERROR 404: Could not find search results. Please type in an available number option.");
-                in.nextLine();
-            }
-        }
-    }
-    public static ArrayList<Product> searchProducts(ArrayList<Product> productArray, int var){
-        ArrayList<Product> output = new ArrayList<>();
-        if(var == 1){
-            for(Product foodItem : productArray){
-                if(foodItem.getClass().equals(Food.class)){
-                    output.add(foodItem);
-                }
-            }
-            return output;
-        }
-        if(var == 2){
-            for(Product clothingItem : productArray){
-                if(clothingItem.getClass().equals(Clothing.class)){
-                    output.add(clothingItem);
-                }
-            }
-            return output;
-        }
-        if (var == 3){
-            for(Product shoeItem : productArray){
-                if(shoeItem.getClass().equals(Shoes.class)){
-                    output.add(shoeItem);
-                }
-                return output;
-            }
-        }
-        return output;
-    }
 
 }
