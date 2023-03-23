@@ -13,50 +13,42 @@ public class Product {
     private int price;
     private boolean onSale;
     private String productName;
-    public static int numVendors;
-    public static int numProducts;
-
-    public static ArrayList<String> vendors = new ArrayList<String>();
-    public static ArrayList<String> products = new ArrayList<String>();
 
     //CONSTRUCTORS
     public Product(String vendor, int price, boolean onSale, String productName) {
         this.vendor = vendor;
-        for (String store : vendors){
-            if (!(store.equalsIgnoreCase(vendor))){
+        for (String store : vendors) {
+            if (!(store.equalsIgnoreCase(vendor))) {
                 vendors.add(vendor);
             }
         }
         this.price = price;
         this.onSale = onSale;
         this.productName = productName;
-        for (String name : products){
-            if (!(name.equalsIgnoreCase(productName))){
+        for (String name : products) {
+            if (!(name.equalsIgnoreCase(productName))) {
                 products.add(productName);
             }
         }
         numVendors++;
+        curProducts.add(this);
+
     }
 
     public Product(String vendor, int price, String productName) {
         this.vendor = vendor;
-        for (String store : vendors){
-            if (!(store.equalsIgnoreCase(vendor))){
+        for (String store : vendors) {
+            if (!(store.equalsIgnoreCase(vendor))) {
                 vendors.add(vendor);
             }
         }
         this.price = price;
         this.onSale = false;
-        this.productName= productName;
-        for (String name : products){
-            if (!(name.equalsIgnoreCase(productName))){
-                products.add(productName);
-            }
-        }
-        numVendors++;
+        this.productName = productName;
+
     }
 
-    public Product(){
+    public Product() {
         this.onSale = false;
         this.price = -1;
         this.vendor = "None";
@@ -96,66 +88,41 @@ public class Product {
     public void setProductName(String productName) {
         this.productName = productName;
     }
+
+
 //METHODS
 
     /**
      * Checks if two objects are sold by the same vendor
+     *
      * @param other The other product's vendor
      * @return true or false
      */
-    public boolean ifEqual(Product other){
-        if (vendor.equals(other.vendor) && price == other.price){
+    public boolean ifEqual(Product other) {
+        if (vendor.equals(other.vendor) && price == other.price) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
 
-    public void addSale(){
+    /**
+     * Alters an existing item by adding a 50% sale onto the price
+     */
+    public void addSale() {
         onSale = true;
-        price = price/2;
+        price = price / 2;
     }
 
-    public String toString(){
-        String output = "Product: "+productName+"\nVendor: "+vendor+"\nPrice: "+price;
-        output += "\nIs it on sale? "+onSale+"\n";
+    /**
+     * Converts a product into a string with main variables
+     *
+     * @return String of product
+     */
+    public String toString() {
+        String output = "Product: " + productName + "\nVendor: " + vendor + "\nPrice: " + price;
+        output += "\nIs it on sale? " + onSale + "\n";
         return output;
     }
 
-
-    public ArrayList<Product> searchResults(ArrayList<Product> productArray, int var){
-        ArrayList<Product> output = new ArrayList<>();
-        if(var == 1){
-            for(Product foodItem : productArray){
-                if(foodItem.getClass().equals(Food.class)){
-                    output.add(foodItem);
-                }
-            }
-            return output;
-        }
-        if(var == 2){
-            for(Product clothingItem : productArray){
-                if(clothingItem.getClass().equals(Clothing.class)){
-                    output.add(clothingItem);
-                }
-            }
-            return output;
-        }
-        if (var == 3){
-            for(Product shoeItem : productArray){
-                if(shoeItem.getClass().equals(Shoes.class)){
-                    output.add(shoeItem);
-                }
-                return output;
-            }
-        }
-        return output;
-    }
-    //public Product[] displayResults(){
-        //user searches using filters for vendor, size, price, onSale, etc. and returns a Product[][] of search results
-        // set number of 4 columns, rows differ by number of search results
-
-    //}
-
-    //public int calcPrice(){
 }

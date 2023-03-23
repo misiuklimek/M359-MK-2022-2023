@@ -47,6 +47,7 @@ public class ProductDriver {
                 else if(num == 3){
                     System.out.println("Looking for : Shoes\n");
                     //display array of available shoes objects
+
                 }
 
             } catch (Exception e){
@@ -55,7 +56,33 @@ public class ProductDriver {
             }
         }
     }
-    public static Product[] searchResult(){
-
+    public static ArrayList<Product> searchProducts(ArrayList<Product> productArray, int var){
+        ArrayList<Product> output = new ArrayList<>();
+        if(var == 1){
+            for(Product foodItem : productArray){
+                if(foodItem.getClass().equals(Food.class)){
+                    output.add(foodItem);
+                }
+            }
+            return output;
+        }
+        if(var == 2){
+            for(Product clothingItem : productArray){
+                if(clothingItem.getClass().equals(Clothing.class)){
+                    output.add(clothingItem);
+                }
+            }
+            return output;
+        }
+        if (var == 3){
+            for(Product shoeItem : productArray){
+                if(shoeItem.getClass().equals(Shoes.class)){
+                    output.add(shoeItem);
+                }
+                return output;
+            }
+        }
+        return output;
     }
+
 }
