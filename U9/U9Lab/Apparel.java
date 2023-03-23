@@ -125,9 +125,11 @@ public class Apparel extends Product{
      * @param outfit The other outfit to be compared to
      * @return Object with better price
      */
-    public int calcOutfitPrice(Apparel[] outfit){
+    public int calcOutfitPrice(ArrayList<Apparel> outfit){
         int price = 0;
-        price += outfit[0].getPrice() + outfit[1].getPrice() + outfit[2].getPrice();
+        for (Apparel cost : outfit){
+            price+=cost.getPrice();
+        }
         return price;
     }
 

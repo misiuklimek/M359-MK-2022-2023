@@ -31,8 +31,32 @@ public class ProductDriver {
         Shoes fillerShoes = new Shoes();
         Clothing fillerClothing = new Clothing();
 
+        products.add(product3);
+        products.add(product2);
+        products.add(product1);
+        products.add(apparel1);
+        products.add(apparel2);
+        products.add(shoe1);
+        products.add(shoe2);
+        products.add(food1);
+        products.add(food2);
+        products.add(food3);
+        products.add(clothing1);
+        products.add(clothing2);
 
-        System.out.println("Welcome to the mall!");
+        for(Product curProduct : products){
+            System.out.println(curProduct);
+        }
+
+        System.out.println("\n\n\n\n");
+
+
+        //Create an outfit and calculate price
+        ArrayList<Apparel> outfit = new ArrayList<>();
+        outfit.add(clothing2);
+        outfit.add(clothing1);
+        outfit.add(shoe1);
+        System.out.println("My outfit costs "+fillerClothing.calcOutfitPrice(outfit));
 
         boolean ifFormal = true;
         //Creating a random outfit!
