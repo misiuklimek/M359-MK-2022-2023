@@ -80,7 +80,7 @@ public class Food extends Product{
      */
     public boolean isClothingAppropriate(Apparel clothing){
         if(clothing.getActivity().equalsIgnoreCase("Formal") && this.isFast ||
-                !this.isFast && clothing.getActivity().equalsIgnoreCase("Casual")){
+                !this.isFast && !clothing.getActivity().equalsIgnoreCase("Casual")){
             return false;
         } else{
             return true;
