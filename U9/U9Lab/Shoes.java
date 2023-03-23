@@ -30,7 +30,7 @@ public class Shoes extends Apparel{
 
 
     public Shoes randomShoes(Boolean ifFormal, String gender){
-        int randomBottomCost;
+        int randomShoesCost;
         String activity;
 
         String randomVendorClothing = "";
@@ -47,7 +47,7 @@ public class Shoes extends Apparel{
             } else{
                 randomVendorClothing = "Amazon";
             }
-            randomBottomCost = (int)(Math.random() * 200)+50;
+            randomShoesCost = (int)(Math.random() * 200)+50;
             activity = "Formal";
 
         } else{
@@ -63,12 +63,12 @@ public class Shoes extends Apparel{
             } else{
                 randomVendorClothing = "Levis";
             }
-            randomBottomCost = (int)(Math.random() * 100);
+            randomShoesCost = (int)(Math.random() * 100);
             activity = "Casual";
 
         }
-        String productNameTop = randomVendorClothing +" Shirt";
-        Clothing randomShoe = new Clothing(randomVendorClothing, randomBottomCost, gender, activity, randomColor(),"Pants", productNameTop);
+        String productNameShoes = randomVendorClothing +" Kicks";
+        Shoes randomShoe = new Shoes(randomVendorClothing, randomShoesCost, gender, activity, randomColor(), ifFormal, 10, productNameShoes);
         return randomShoe;
     }
 

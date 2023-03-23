@@ -17,31 +17,13 @@ public class Product {
     //CONSTRUCTORS
     public Product(String vendor, int price, boolean onSale, String productName) {
         this.vendor = vendor;
-        for (String store : vendors) {
-            if (!(store.equalsIgnoreCase(vendor))) {
-                vendors.add(vendor);
-            }
-        }
         this.price = price;
         this.onSale = onSale;
         this.productName = productName;
-        for (String name : products) {
-            if (!(name.equalsIgnoreCase(productName))) {
-                products.add(productName);
-            }
-        }
-        numVendors++;
-        curProducts.add(this);
-
     }
 
     public Product(String vendor, int price, String productName) {
         this.vendor = vendor;
-        for (String store : vendors) {
-            if (!(store.equalsIgnoreCase(vendor))) {
-                vendors.add(vendor);
-            }
-        }
         this.price = price;
         this.onSale = false;
         this.productName = productName;

@@ -137,58 +137,7 @@ public class Apparel extends Product{
      */
     public Apparel[] randomOutfit(){
         Apparel[] outfit = new Apparel[3];
-        boolean ifFormal = false;
-        if(Math.random()>.5){
-            ifFormal = true;
-        }
-        int randomTopCost;
-        int randomBottomCost;
-        int randomShoeCost;
-        String activity;
-
-        String randomVendorClothing = "";
-        if(ifFormal){
-            double random1 = Math.random();
-            if(random1>.8){
-             randomVendorClothing = "Van Heusen";
-            } else if (random1>.6) {
-                randomVendorClothing = "Gucci";
-            } else if (random1>.4) {
-                randomVendorClothing = "H&M";
-            } else if (random1>.2) {
-                randomVendorClothing = "Armani";
-            } else{
-                randomVendorClothing = "Amazon";
-            }
-            randomTopCost = (int)(Math.random() * 200)+50;
-            randomBottomCost = (int)(Math.random() * 200)+50;
-            randomShoeCost = (int)(Math.random() * 200)+50;
-            activity = "Formal";
-
-        } else{
-            double random1 = Math.random();
-            if(random1>.8){
-                randomVendorClothing = "Nike";
-            } else if (random1>.6) {
-                randomVendorClothing = "Adidas";
-            } else if (random1>.4) {
-                randomVendorClothing = "Champion";
-            } else if (random1>.2) {
-                randomVendorClothing = "Patagonia";
-            } else{
-                randomVendorClothing = "Levis";
-            }
-            randomTopCost = (int)(Math.random() * 100);
-            randomBottomCost = (int)(Math.random() * 100);
-            randomShoeCost = (int)(Math.random() * 100);
-            activity = "Casual";
-        }
-        String productNameTop = randomVendorClothing +" Shirt";
-        String productNameBottom = randomVendorClothing +" Pants";
-        String productNameShoes = randomVendorClothing+" Shoes";
-        Apparel randomTop = new Apparel(randomVendorClothing, randomTopCost, gender, activity, randomColor(), productNameTop);
-        Apparel randomBottom = new Apparel(randomVendorClothing, randomBottomCost, gender, activity, randomColor(), productNameBottom);
-        Shoes randomShoe = new Shoes(randomVendorClothing, randomShoeCost, gender, activity, randomColor(), ifFormal,-1, productNameShoes);
+        Apparel bottom =
         return outfit;
     }
 
